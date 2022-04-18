@@ -1,2 +1,2 @@
-# hubshield
-Linux connector to the SPI Hub device from hubshield.org
+# usbspihub
+Linux connector to the SPI Hub device
