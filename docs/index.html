@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Console</title>
+    <script src="hterm_all.js"></script>
+    <script src="serial.js"></script>
+    <script src="console.js"></script>
+    <script src="msgpack.js"></script>
+
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #terminal {
+            display: block;
+            position: relative;
+            height: 100%;
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <p>
+     <button id="connect">Connect</button>
+    </p>
+    <div id='terminal'></div>
+    <script>
+        window.onload = async function () {
+            await lib.init();
+            setupHterm();
+        };
+    </script>
+
+</body>
+</html>

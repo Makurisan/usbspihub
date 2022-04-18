@@ -1,0 +1,64 @@
+/*
+ * Device Tree overlay for Virtual Hub HAT by Kubica
+ *
+ */
+
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "brcm,bcm2837";
+
+	fragment@0 {
+		target = <&spidev0>;
+		__overlay__ {
+			status = "disabled";
+		};
+	};
+
+	fragment@1 {
+		target = <&spi0>;
+        __overlay__ {
+			/* needed to avoid dtc warning */
+    		#address-cells = <0x1>;
+			#size-cells = <0x0>;
+ 			status = "okay";
+			vhub: vhub@48 {
+				compatible = "hubshield,v-hub";
+				reg = <0x0>; /* chip select */
+				pinctrl-names = "default";
+				pinctrl-0 = <&vhub_pins>;
+				interrupt-parent = <&gpio>;
+				interrupts = <0x5 0x0 0x6 0x0>; /* IRQ_TYPE_EDGE_FALLING */
+				reset-gpio = <&gpio 0x18 0x4>; // Bit 0: 1 means active low/ Bit 2:1 means open drain
+				max-ports = <0x5>; // count of virtual hub ports
+				spi_dtrdy = <0x6>;  
+				spi_irq = <0x5>;  
+				endpoints = <0xF>; // count of hub generic endpoints
+				gpio-controller;
+				#gpio-cells = <0x3>;
+				spi-max-frequency = <8000000>;
+			};
+		};
+	};
+	fragment@2 {
+		target = <&gpio>;
+		__overlay__ { 
+			vhub_pins: vhub_pins {
+				brcm,pins = <5 6 24>;	// irq, dtrdy, reset   		
+				brcm,function = <0 0 0>; // input, input, output(1)
+				brcm,pull = <2 2 0>;     // 0 = none, 1 = pull down, 2 = pull up
+			};
+		};
+	};
+
+	__overrides__ {
+		ports = <&vhub>,"max-ports:0";
+		spi_irq = <&vhub>,"interrupts:0";
+		spi_dtrdy = <&vhub>,"interrupts:2";		
+		spi_cs = <&vhub>,"reg:0";
+		speed =  <&vhub>,"spi-max-frequency:0";
+		reset =  <&vhub>,"reset-gpio:0";
+    };
+
+};

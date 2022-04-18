@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: GPL-2.0+
+obj-m  := v-hub.o 
+v-hub-objs := vusb_core.o mpack.o vusb_mpack.o vusb_udc.o vusb_spi.o  vusb_ep.o vusb_helper.o vusb_chrdev.o
+
+#KERNEL_DIR ?= /mnt/g/linux/linux-5.10.4-v8
+KERNEL_DIR ?= ~/rpi/linux-5.10.4-v8
+
+
+all:
+	        make -C $(KERNEL_DIR) \
+	                ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- \
+					                M=$(PWD) modules
+clean:
+	        make -C $(KERNEL_DIR) \
+			ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- \
+						      M=$(PWD) clean
