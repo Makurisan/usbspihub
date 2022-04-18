@@ -1,3 +1,6 @@
 /.vs/**
 /build/pi3-1/gadget
 /build/pi3-1/remote
+/build/pi3-1/mpack
+/source/.vscode
+
