@@ -21,6 +21,7 @@
  
  debug_view = true;
  label_view = false;
+ tape_height=4.6;
 
 // Include the BlindsFeeder Library. 
 // To learn the details about available parameters, please read the extensive comments in the library file. 
@@ -35,7 +36,7 @@ include <BlindsFeeder-Library.scad>
 // parameters are avaialable and what exactly they mean and do. 
 tape0402 = TapeDefinition(
     tape_width=8-0.9, // smd
-    tape_thickness=5.6,
+    tape_thickness=tape_height,
     // Pitch of the pockets in the tape. Use 2mm or multiples of 4mm.
     pocket_pitch=2,  // Taschenplatz
     // Pocket width across the tape.
@@ -47,7 +48,7 @@ tape0402 = TapeDefinition(
 
 tape0401 = TapeDefinition( // für schmalle tapes
     tape_width=24-0.8,
-    tape_thickness=5.6,
+    tape_thickness=tape_height,
     // Pitch of the pockets in the tape. Use 2mm or multiples of 4mm.
     pocket_pitch=2,  // Taschenplatz
     // Pocket width across the tape.
@@ -59,7 +60,7 @@ tape0401 = TapeDefinition( // für schmalle tapes
 
 tape0403 = TapeDefinition( // für schmalle tapes
     tape_width=8-0.8,
-    tape_thickness=5.6,
+    tape_thickness=tape_height,
     // Pitch of the pockets in the tape. Use 2mm or multiples of 4mm.
     pocket_pitch=2,  // Taschenplatz
     // Pocket width across the tape.
@@ -71,7 +72,7 @@ tape0403 = TapeDefinition( // für schmalle tapes
 
 tape0404 = TapeDefinition( // für schmalle tapes
     tape_width=12-0.8,
-    tape_thickness=5.6,
+    tape_thickness=tape_height,
     // Pitch of the pockets in the tape. Use 2mm or multiples of 4mm.
     pocket_pitch=2,  // Taschenplatz
     // Pocket width across the tape.
@@ -81,6 +82,17 @@ tape0404 = TapeDefinition( // für schmalle tapes
     // Horizontal per-side play of the cover to allow for imperfections of the print.
     cover_play=0.08);
 
+tape0405 = TapeDefinition( // für schmalle tapes
+    tape_width=16-0.8,
+    tape_thickness=tape_height,
+    // Pitch of the pockets in the tape. Use 2mm or multiples of 4mm.
+    pocket_pitch=2,  // Taschenplatz
+    // Pocket width across the tape.
+    pocket_width=2.4,
+    // Tape play. Use this to adjust the precise tape width and the play for print imperfections.
+    tape_play=-0.03,
+    // Horizontal per-side play of the cover to allow for imperfections of the print.
+    cover_play=0.08);
 
 // Create the feeder array with these tape definitions.
 // Note the BlindsFeeder has a myriad of parameters you can tweak, the ones used here are just the most important. 
@@ -88,19 +100,35 @@ tape0404 = TapeDefinition( // für schmalle tapes
 rotate([0, 0, 180]) BlindsFeeder(
     // Tape length from feeder edge to edge (not including the margin), usually multiples of 4mm. 
     // Other values are supported if you manually adjust the default 2mm edge distance in the OpenPNP feeder.
-    tape_length=40,
+    tape_length=160,
     
     // For OCR, add a margin at the begin of the tape.
     margin_length_begin=16,
     
-    // Define the lanes with number, tape definitinon, part label (String array with multiple lines).
+    // Define the lanes with number, tape definitinon, pardocht label (String array with multiple lines).
     arrayed_tape_lanes=      [
         LaneDefinition(1, tape0402,   ["C269541"]), 
-        LaneDefinition(1, tape0401,   ["USB-C"]), 
+        LaneDefinition(1, tape0402,   ["C269541"]), 
+         LaneDefinition(1, tape0401,   ["C165948"]), 
         LaneDefinition(1, tape0403,   ["C15643"]), 
         LaneDefinition(1, tape0404,   ["C7813"]), 
         LaneDefinition(1, tape0403,   ["C264432"]), 
         LaneDefinition(1, tape0402,   ["C282732"]), 
+        LaneDefinition(1, tape0402,   ["C282732"]), 
+        LaneDefinition(1, tape0402,   ["C282732"]), 
+        LaneDefinition(1, tape0402,   ["C352254"]), 
+        LaneDefinition(1, tape0402,   ["C352254"]), 
+        LaneDefinition(1, tape0402,   ["C17024"]), 
+        LaneDefinition(1, tape0402,   ["C105173"]), 
+        LaneDefinition(1, tape0402,   ["C105173"]), 
+        LaneDefinition(1, tape0402,   ["C95978"]), 
+        LaneDefinition(1, tape0402,   ["C270124"]), 
+        LaneDefinition(1, tape0402,   ["C270124"]), 
+        LaneDefinition(1, tape0402,   ["C24123"]), 
+        LaneDefinition(1, tape0402,   ["C25611"]), 
+  //      LaneDefinition(1, tape0405,   ["C6057"]), 
+       LaneDefinition(1, tape0401,   ["C165948"]), 
+
         ],
     
     label=label_view,
