@@ -35,7 +35,7 @@ include <BlindsFeeder-Library.scad>
 // Again, please read the extensive commentPocket pitchs in the library file to learn what 
 // parameters are avaialable and what exactly they mean and do. 
 tape0402 = TapeDefinition(
-    tape_width=8-0.9, // smd
+    tape_width=8-0.4, // smd
     tape_thickness=tape_height,
     // Pitch of the pockets in the tape. Use 2mm or multiples of 4mm.
     pocket_pitch=2,  // Taschenplatz
@@ -109,10 +109,10 @@ rotate([0, 0, 180]) BlindsFeeder(
     arrayed_tape_lanes=      [
         LaneDefinition(1, tape0402,   ["C269541"]), 
         LaneDefinition(1, tape0402,   ["C269541"]), 
-         LaneDefinition(1, tape0401,   ["C165948"]), 
-        LaneDefinition(1, tape0403,   ["C15643"]), 
-        LaneDefinition(1, tape0404,   ["C7813"]), 
-        LaneDefinition(1, tape0403,   ["C264432"]), 
+         LaneDefinition(1, tape0401,   ["C165948"]), // usb 
+        LaneDefinition(1, tape0403,   ["C15643"]), // black
+        LaneDefinition(1, tape0404,   ["C7813"]),  // black
+        LaneDefinition(1, tape0403,   ["C264432"]), // black
         LaneDefinition(1, tape0402,   ["C282732"]), 
         LaneDefinition(1, tape0402,   ["C282732"]), 
         LaneDefinition(1, tape0402,   ["C282732"]), 
@@ -127,7 +127,7 @@ rotate([0, 0, 180]) BlindsFeeder(
         LaneDefinition(1, tape0402,   ["C24123"]), 
         LaneDefinition(1, tape0402,   ["C25611"]), 
   //      LaneDefinition(1, tape0405,   ["C6057"]), 
-       LaneDefinition(1, tape0401,   ["C165948"]), 
+       LaneDefinition(1, tape0401,   ["C165948"]), // usb 
 
         ],
     
